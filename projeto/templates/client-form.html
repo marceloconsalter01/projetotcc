@@ -1,0 +1,35 @@
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="home">Home</a>
+            </li>
+          </ul>
+        </nav>
+
+        <form method="post" name="select">
+          <div class="form-row align-items-center">
+            <div class="col-auto my-1">
+              <label class="mr-sm-2" for="inlineFormCustomSelect">Status da Conta Corrente $</label>
+              <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_1" onchange="{% print('alou') %}">
+                <option selected>Selecione...</option>
+                <option value="1">Menor que zero</option>
+                <option value="2">Entre zero e duzentos</option>
+                <option value="3">Maior ou igual a duzentos</option>
+                <option value="4">Não possui conta</option>
+              </select>
+            </div>
+              <button type="submit" name="salvar">Salvar</button>
+          </div>
+        </form>
+</body>
+</html>

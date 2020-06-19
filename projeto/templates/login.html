@@ -1,4 +1,3 @@
-
 {% load static %}
 
 <head>
@@ -6,7 +5,10 @@
   <script type="text/javascript" src="{% static 'css\bootstrap-4.5.0-dist\js\jquery-3.5.1.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'css\bootstrap-4.5.0-dist\js\bootstrap.min.js' %}"></script>
   <link   rel="stylesheet" TYPE="text/css" href= "{% static 'css\stylelogin.css' %}"/>
-
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
 
 <!------ Include the above in your HEAD tag ---------->
@@ -30,10 +32,17 @@
     </div>
 
     <!-- Login Form -->
-    <form method="post">
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-      <input type="submit" class="fadeIn fourth" value="Log In">
+    <form method="post" action="submit" class="form-group">{% csrf_token %}
+        <input type="text" class="form-control" id="login" name="username" placeholder="login"><br>
+        <input type="password" class="form-control" id="login" name="password" placeholder="password"><br>
+
+          {% for message in messages %}
+          <div class="alert alert-danger">
+              <strong>Erro!</strong> {{ message }}
+          </div>
+          {% endfor %}
+
+        <input type="submit" class="fadeIn fourth" value="Log In">
     </form>
 
     <!-- Remind Passowrd -->
