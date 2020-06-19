@@ -16,11 +16,17 @@
           </ul>
         </nav>
 
-        <form method="post" name="select">
+            {% for lista in teste %}
+
+                <p>{{lista.nome}}</p>
+
+            {% endfor %}
+
+        <form action="/insert_client" method="post" enctype="aplication/json" role="form" id="atb1">{% csrf_token %}
           <div class="form-row align-items-center">
             <div class="col-auto my-1">
               <label class="mr-sm-2" for="inlineFormCustomSelect">Status da Conta Corrente $</label>
-              <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_1" onchange="{% print('alou') %}">
+              <select id ="selecao_1" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_1" onchange="" >
                 <option selected>Selecione...</option>
                 <option value="1">Menor que zero</option>
                 <option value="2">Entre zero e duzentos</option>
@@ -28,7 +34,7 @@
                 <option value="4">Não possui conta</option>
               </select>
             </div>
-              <button type="submit" name="salvar">Salvar</button>
+              <button type="submit" class="btn btn-primary" form="atb1" >Salvar</button>
           </div>
         </form>
 </body>
