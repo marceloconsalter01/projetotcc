@@ -44,7 +44,7 @@ def submit_login(request):
 def insert_client(request):
     data = request.POST.get('selecao_1')
     print(data)
-    return render(request, login_page)
+    return redirect(create_clients)
 
     
 

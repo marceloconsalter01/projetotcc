@@ -1,11 +1,15 @@
-
+{% load static %}
 <html>
 <head>
+    <link   rel="stylesheet" TYPE="text/css" href="{% static 'css\bootstrap-4.5.0-dist\css\bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'css\bootstrap-4.5.0-dist\js\jquery-3.5.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'css\bootstrap-4.5.0-dist\js\bootstrap.min.js' %}"></script>
+    <link   rel="stylesheet" TYPE="text/css" href= "{% static 'css\client-form.css' %}"/>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Cadastro</title>
 </head>
 <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -22,11 +26,12 @@
 
             {% endfor %}
 
+        <div class="forms" id="forms">
         <form action="/insert_client" method="post" enctype="aplication/json" role="form" id="atb1">{% csrf_token %}
-          <div class="form-row align-items-center">
+          <div class=" align-items-center">
             <div class="col-auto my-1">
               <label class="mr-sm-2" for="inlineFormCustomSelect">Status da Conta Corrente $</label>
-              <select id ="selecao_1" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_1" onchange="" >
+              <select id ="selecao_1" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_1" onchange="" ><br/>
                 <option selected>Selecione...</option>
                 <option value="1">Menor que zero</option>
                 <option value="2">Entre zero e duzentos</option>
@@ -34,8 +39,113 @@
                 <option value="4">Não possui conta</option>
               </select>
             </div>
-              <button type="submit" class="btn btn-primary" form="atb1" >Salvar</button>
-          </div>
         </form>
+
+        <form action="/insert_client" method="post" enctype="aplication/json" role="form" id="atb2">{% csrf_token %}
+            <div class="col-auto my-1">
+              <label class="mr-sm-2" for="inlineFormCustomSelect">Duração do Emprestimo $</label>
+              <select id ="selecao_2" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_2" onchange="" > <br/>
+                <option selected>Selecione...</option>
+                <option value="1">Menor que zero</option>
+                <option value="2">Entre zero e duzentos</option>
+                <option value="3">Maior ou igual a duzentos</option>
+                <option value="4">Não possui conta</option>
+              </select>
+            </div>
+        </form>
+
+        <form action="/insert_client" method="post" enctype="aplication/json" role="form" id="atb3">{% csrf_token %}
+            <div class="col-auto my-1">
+              <label class="mr-sm-2" for="inlineFormCustomSelect"> Histórico de crédito $</label>
+              <select id ="selecao_3" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_3" onchange="" >  <br/>
+                <option selected>Selecione...</option>
+                <option value="1">Menor que zero</option>
+                <option value="2">Entre zero e duzentos</option>
+                <option value="3">Maior ou igual a duzentos</option>
+                <option value="4">Não possui conta</option>
+              </select>
+            </div>
+        </form>
+
+        <form action="/insert_client" method="post" enctype="aplication/json" role="form" id="atb4">{% csrf_token %}
+            <div class="col-auto my-1">
+              <label class="mr-sm-2" for="inlineFormCustomSelect">Status da Conta Corrente $</label>
+              <select id ="selecao_4" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_4" onchange="" >
+                <option selected>Selecione...</option>
+                <option value="1">Menor que zero</option>
+                <option value="2">Entre zero e duzentos</option>
+                <option value="3">Maior ou igual a duzentos</option>
+                <option value="4">Não possui conta</option>
+              </select>
+            </div>
+        </form>
+
+        <form action="/insert_client" method="post" enctype="aplication/json" role="form" id="atb5">{% csrf_token %}
+            <div class="col-auto my-1">
+              <label class="mr-sm-2" for="inlineFormCustomSelect">Status da Conta Corrente $</label>
+              <select id ="selecao_5" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_5" onchange="" >
+                <option selected>Selecione...</option>
+                <option value="1">Menor que zero</option>
+                <option value="2">Entre zero e duzentos</option>
+                <option value="3">Maior ou igual a duzentos</option>
+                <option value="4">Não possui conta</option>
+              </select>
+            </div>
+        </form>
+
+        <form action="/insert_client" method="post" enctype="aplication/json" role="form" id="atb6">{% csrf_token %}
+            <div class="col-auto my-1">
+              <label class="mr-sm-2" for="inlineFormCustomSelect">Status da Conta Corrente $</label>
+              <select id ="selecao_6" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_6" onchange="" >
+                <option selected>Selecione...</option>
+                <option value="1">Menor que zero</option>
+                <option value="2">Entre zero e duzentos</option>
+                <option value="3">Maior ou igual a duzentos</option>
+                <option value="4">Não possui conta</option>
+              </select>
+            </div>
+        </form>
+
+        <form action="/insert_client" method="post" enctype="aplication/json" role="form" id="atb7">{% csrf_token %}
+            <div class="col-auto my-1">
+              <label class="mr-sm-2" for="inlineFormCustomSelect">Status da Conta Corrente $</label>
+              <select id ="selecao_7" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_7" onchange="" >
+                <option selected>Selecione...</option>
+                <option value="1">Menor que zero</option>
+                <option value="2">Entre zero e duzentos</option>
+                <option value="3">Maior ou igual a duzentos</option>
+                <option value="4">Não possui conta</option>
+              </select>
+            </div>
+        </form>
+
+        <form action="/insert_client" method="post" enctype="aplication/json" role="form" id="atb8">{% csrf_token %}
+            <div class="col-auto my-1">
+              <label class="mr-sm-2" for="inlineFormCustomSelect">Status da Conta Corrente $</label>
+              <select id ="selecao_8" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_8" onchange="" >
+                <option selected>Selecione...</option>
+                <option value="1">Menor que zero</option>
+                <option value="2">Entre zero e duzentos</option>
+                <option value="3">Maior ou igual a duzentos</option>
+                <option value="4">Não possui conta</option>
+              </select>
+            </div>
+        </form>
+
+        <form action="/insert_client" method="post" enctype="aplication/json" role="form" id="atb5">{% csrf_token %}
+            <div class="col-auto my-1">
+              <label class="mr-sm-2" for="inlineFormCustomSelect">Status da Conta Corrente $</label>
+              <select id ="selecao_5" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_5" onchange="" >
+                <option selected>Selecione...</option>
+                <option value="1">Menor que zero</option>
+                <option value="2">Entre zero e duzentos</option>
+                <option value="3">Maior ou igual a duzentos</option>
+                <option value="4">Não possui conta</option>
+              </select>
+            </div>
+        </form>
+        </div>
+
+
 </body>
 </html>

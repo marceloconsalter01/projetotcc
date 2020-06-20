@@ -1,0 +1,13 @@
+{% load static %}
+
+body{
+    text-align: center;
+
+}
+
+form.atb1{
+
+    display: inline-block;
+    width: 90px;
+
+}
