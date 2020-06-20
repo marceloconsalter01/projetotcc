@@ -45,7 +45,17 @@ def InsertMongo(selecao_nome, selecao_cpf, selecao_email, selecao_1, selecao_2, 
 def FindMongoAll():
     return db.cadastro.find()
 
-##print(teste)
+
+def UpdateMongo():
+    query = {"cpf":'08541518930'}
+    newvalues = {"$set":{"nome":"Marcelo ZZZ 96"}}
+    db.cadastro.update_one(query,newvalues)
+
+
+UpdateMongo()
+
+#teste = FindMongoAll()
+#print(teste)
 
 
 

@@ -1,6 +1,5 @@
 import json
 from contextvars import Context
-
 from django.shortcuts import render, HttpResponse, redirect
 from django.template.loader import get_template
 from django.views.decorators.csrf import csrf_protect
@@ -19,9 +18,12 @@ def list_page(request):
     return render(request, "list-form.html", {"consulta": consulta})
 
 
-
 def login_page(request):
     return render(request, "login.html")
+
+
+def redirect_page(request):
+    return render(request, "redirect-form.html")
 
 
 def create_clients(request):
@@ -36,12 +38,10 @@ def submit_login(request):
     if request.POST:
         username = request.POST.get('username')
         password = request.POST.get('password')
-        print(username)
-        print(password)
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect(create_clients)
+            return redirect(redirect_page)
         else:
             messages.error(request, 'Usuario ou senha invalidos')
     return redirect(login_page)
@@ -73,7 +73,8 @@ def insert_client(request):
     selecao_19 = request.POST.get('selecao_19')
     selecao_20 = request.POST.get('selecao_20')
 
-    InsertMongo(selecao_nome,selecao_cpf,selecao_email,selecao_1,
-                selecao_2, selecao_3,selecao_4,selecao_5,selecao_6,selecao_7,selecao_8,selecao_9,selecao_10,
-                selecao_11,selecao_12,selecao_13,selecao_14,selecao_15,selecao_16,selecao_17,selecao_18,selecao_19,selecao_20)
+    InsertMongo(selecao_nome, selecao_cpf, selecao_email, selecao_1,
+                selecao_2, selecao_3, selecao_4, selecao_5, selecao_6, selecao_7, selecao_8, selecao_9, selecao_10,
+                selecao_11, selecao_12, selecao_13, selecao_14, selecao_15, selecao_16, selecao_17, selecao_18,
+                selecao_19, selecao_20)
     return redirect(create_clients)
