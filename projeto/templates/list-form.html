@@ -47,11 +47,15 @@
         </table>
 
         <div>
-            <form action="/insert_client" method="post" enctype="aplication/json" role="form" id="atb1">{% csrf_token %}
+            <form action="/ConsultClient" method="post" enctype="aplication/json" role="form" id="atb1">{% csrf_token %}
                 <div class="col-auto my-1">
                     <label class="mr-sm-2" for="inlineFormCustomSelect">Consultar Cliente</label>
-                    <input type="text" class="form-control" id="Consulta_cpf" name="Consulta_cpf" placeholder="CFP">
+                    <input type="number" class="form-control" id="consulta_cpf" name="consulta_cpf" placeholder="CPF" required>
+                    <input type="submit" class="btn btn-dark" value="Buscar">
+                    <input type="submit"  class="btn btn-dark"  value="Excluir" formaction="/DeleteMongo">
                 </div>
             </form>
         </div>
+
 </body>
+</html>

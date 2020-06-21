@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from pymongo import MongoClient
-from projeto.models import db, InsertMongo, FindMongoAll
+from projeto.models import db, InsertMongo, FindMongoAll, FindMongoOne, UpdateMongo
 
 
 def home_page(request):
@@ -20,6 +20,10 @@ def list_page(request):
 
 def login_page(request):
     return render(request, "login.html")
+
+
+def edit_page(request):
+    return render(request, "client-edit.html")
 
 
 def redirect_page(request):
@@ -78,3 +82,56 @@ def insert_client(request):
                 selecao_11, selecao_12, selecao_13, selecao_14, selecao_15, selecao_16, selecao_17, selecao_18,
                 selecao_19, selecao_20)
     return redirect(create_clients)
+
+
+@csrf_protect
+def ConsultClient(request):
+    cpf = request.POST.get('consulta_cpf')
+    print('ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ')
+    consulta_one = FindMongoOne(cpf)
+    return render(request, "client-edit.html", {"consulta_one": consulta_one})
+
+
+@csrf_protect
+def EditClient(request):
+    selecao_nome = request.POST.get('selecao_nome')
+    selecao_cpf = request.POST.get('selecao_cpf')
+    selecao_email = request.POST.get('selecao_email')
+    selecao_1 = request.POST.get('selecao_1')
+    selecao_2 = request.POST.get('selecao_2')
+    selecao_3 = request.POST.get('selecao_3')
+    selecao_4 = request.POST.get('selecao_4')
+    selecao_5 = request.POST.get('selecao_5')
+    selecao_6 = request.POST.get('selecao_6')
+    selecao_7 = request.POST.get('selecao_7')
+    selecao_8 = request.POST.get('selecao_8')
+    selecao_9 = request.POST.get('selecao_9')
+    selecao_10 = request.POST.get('selecao_10')
+    selecao_11 = request.POST.get('selecao_11')
+    selecao_12 = request.POST.get('selecao_12')
+    selecao_13 = request.POST.get('selecao_13')
+    selecao_14 = request.POST.get('selecao_14')
+    selecao_15 = request.POST.get('selecao_15')
+    selecao_16 = request.POST.get('selecao_16')
+    selecao_17 = request.POST.get('selecao_17')
+    selecao_18 = request.POST.get('selecao_18')
+    selecao_19 = request.POST.get('selecao_19')
+    selecao_20 = request.POST.get('selecao_20')
+
+    UpdateMongo(selecao_nome, selecao_cpf, selecao_email, selecao_1,
+                selecao_2, selecao_3, selecao_4, selecao_5, selecao_6, selecao_7, selecao_8, selecao_9, selecao_10,
+                selecao_11, selecao_12, selecao_13, selecao_14, selecao_15, selecao_16, selecao_17, selecao_18,
+                selecao_19, selecao_20)
+
+    print(selecao_email)
+    print(selecao_1)
+
+    return redirect(edit_page)
+
+
+def DeleteMongo(request):
+    cpf_exclude = str(request.POST.get('consulta_cpf'))
+    print(cpf_exclude)
+    teste = DeleteMongo(cpf_exclude)
+    print(teste)
+    return redirect(list_page)

@@ -9,7 +9,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cadastro</title>
+    <title>Editar/Excluir Cadastro</title>
 </head>
 <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -23,44 +23,45 @@
 
 
         <div class="forms" id="forms">
-              <form action="/insert_client" method="post" enctype="aplication/json" role="form" id="atb1">{% csrf_token %}
+              <form action="/EditClient" method="post" enctype="aplication/json" role="form" id="atb1">{% csrf_token %}
                 <div class=" align-items-center">
 
                 <div class="col-auto my-1">
                       <label class="mr-sm-2" for="inlineFormCustomSelect">Nome</label>
-                      <input type="text" class="form-control" id="selecao_nome" name="selecao_nome" placeholder="Nome completo">
+                      <input type="text" class="form-control" id="selecao_nome" name="selecao_nome" value="{{consulta_one.nome}}"required>
                 </div>
 
                 <div class="col-auto my-1">
                       <label class="mr-sm-2" for="inlineFormCustomSelect">CPF</label>
-                      <input type="cpf" class="form-control" id="selecao_cpf" name="selecao_cpf" placeholder="CPF">
+                      <input type="cpf" class="form-control" id="selecao_cpf" name="selecao_cpf" value="{{consulta_one.cpf}}"required>
                 </div>
 
                 <div class="col-auto my-1">
                       <label class="mr-sm-2" for="inlineFormCustomSelect">E-mail</label>
-                      <input type="email" class="form-control" id="selecao_email" name="selecao_email" placeholder="E-mail">
+                      <input type="email" class="form-control" id="selecao_email" name="selecao_email" value="{{consulta_one.email}}" required>
                 </div>
+
 
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Status da Conta Corrente $</label>
                   <select id ="selecao_1" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_1" onchange="" >
-                    <option selected>Selecione...</option>
+                    <option value="{{consulta_one.checking_status}}">{{consulta_one.checking_status}}</option>
                     <option value="<0">Menor que zero</option>
                     <option value="0<=X<200">Entre zero e duzentos</option>
-                    <option value="'no checking'">Maior ou igual a duzentos</option>
-                    <option value=">=200">Não possui conta</option>
+                    <option value="'no checking'">Nãp possui conta</option>
+                    <option value=">=200">Maior ou igual a duzentos</option>
                   </select>
                 </div>
 
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Duração do Emprestimo $</label>
-                  <input type="text" class="form-control" id="selecao_2" name="selecao_2" placeholder="Duração do Emprestimo(em meses)">
+                  <input type="text" class="form-control" id="selecao_2" name="selecao_2" value="{{consulta_one.duration}}"required>
                 </div>
 
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect"> Histórico de crédito $</label>
                   <select id ="selecao_3" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_3" onchange="" >
-                    <option selected>Selecione...</option>
+                    <option value="{{consulta_one.credit_history}}">{{consulta_one.credit_history}}</option>
                     <option value="'critical/other existing credit'">Conta crítica em outros bancos</option>
                     <option value="'existing paid'">Créditos existentes, porém pagos</option>
                     <option value="'no credits/all paid'">Empréstimos nessa instuição pagos</option>
@@ -72,7 +73,7 @@
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Objetivo $</label>
                   <select id ="selecao_4" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_4" onchange="" >
-                    <option selected>Selecione...</option>
+                    <option value="{{consulta_one.purpose}}">{{consulta_one.purpose}}</option>
                     <option value="radio/tv">Televisão</option>
                     <option value="education">Educação</option>
                     <option value="furniture/equipment">Móveis/Equipamentos</option>
@@ -90,7 +91,7 @@
 
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Valor do empréstimo</label>
-                  <input type="number"  class="form-control" id="selecao_5" name="selecao_5" placeholder="Valor do crédito (R$)" >
+                  <input type="number"  class="form-control" id="selecao_5" name="selecao_5" value="{{consulta_one.credit_amount}}" required>
                 </div>
 
 
@@ -98,7 +99,7 @@
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Valor em conta poupança</label>
                   <select id ="selecao_6" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_6" onchange="" >
-                    <option selected>Selecione...</option>
+                    <option value="{{consulta_one.savings_status}}">{{consulta_one.savings_status}}</option>
                     <option value="'no known savings'">Nenhuma conta poupança</option>
                     <option value="<100">Menos que R$100,00</option>
                     <option value="500<=X<1000">Entre R$500,00 e R$1.000,00</option>
@@ -112,7 +113,7 @@
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Tempo de trabalho no emprego atual</label>
                   <select id ="selecao_7" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_7" onchange="" >
-                    <option selected>Selecione...</option>
+                    <option value="{{consulta_one.employment}}">{{consulta_one.employment}}</option>
                     <option value=">=7">Mais que 7 anos</option>
                     <option value="1<=X<4">Entre 1 à 4 anos</option>
                     <option value="4<=X<7">Entre 4 à 7 anos</option>
@@ -126,7 +127,7 @@
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Taxa de parcelamento em porcentagem da renda disponível</label>
                   <select id ="selecao_8" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_8" onchange="" >
-                    <option selected>Selecione...</option>
+                    <option value="{{consulta_one.installment_commitment}}">{{consulta_one.installment_commitment}}</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -138,7 +139,7 @@
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Estado civil e gênero</label>
                   <select id ="selecao_9" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_9" onchange="" >
-                    <option selected>Selecione...</option>
+                    <option value="{{consulta_one.personal_status}}">{{consulta_one.personal_status}}</option>
                     <option value="'male single'">Masculino e solteiro</option>
                     <option value="'female div/dep/mar'">Feminino e Divorciado/Separado/Casado</option>
                     <option value="'male div/sep'">Masculino e Divorciado/Separado</option>
@@ -150,7 +151,7 @@
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Fiador/Outras partes envolvidas</label>
                   <select id ="selecao_10" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_10" onchange="" >
-                    <option selected>Selecione...</option>
+                    <option value="{{consulta_one.other_parties}}">{{consulta_one.other_parties}}</option>
                     <option value="none">Nenhum</option>
                     <option value="guarantor">Fiador</option>
                     <option value="'co applicant'">Cofiador</option>
@@ -160,7 +161,7 @@
                 <div class="col-auto my-1">
                     <label class="mr-sm-2" for="inlineFormCustomSelect">Reside no mesmo lugar desde</label>
                     <select id ="selecao_11" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_11" onchange="" >
-                      <option selected>Selecione...</option>
+                      <option value="{{consulta_one.residence_since}}">{{consulta_one.residence_since}}</option>
                       <option value="1">1 Ano</option>
                       <option value="2">2 Anos</option>
                       <option value="3">3 Anos </option>
@@ -171,7 +172,7 @@
                 <div class="col-auto my-1">
                     <label class="mr-sm-2" for="inlineFormCustomSelect">Propriedades</label> <!-- Verificar condições da documentação (atributo12) -->
                     <select id ="selecao_12" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_12" onchange="" >
-                      <option selected>Selecione...</option>
+                      <option value="{{consulta_one.property_magnitude}}">{{consulta_one.property_magnitude}}</option>
                       <option value="'real estate'">Imovéis</option>
                       <option value="'life insurance'">Seguro de vida</option>
                       <option value="'no known property'">Sem propriedades </option>
@@ -181,13 +182,13 @@
 
                 <div class="col-auto my-1">
                     <label class="mr-sm-2" for="inlineFormCustomSelect">Idade</label>
-                    <input type="number"  class="form-control" id="selecao_13" name="selecao_13" placeholder="Preencha a idade" >
+                    <input type="number"  class="form-control" id="selecao_13" name="selecao_13"  value="{{consulta_one.age}}" required>
                 </div>
 
                  <div class="col-auto my-1">
                     <label class="mr-sm-2" for="inlineFormCustomSelect">Outros parcelamentos </label>
                     <select id ="selecao_14" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_14" onchange="" >
-                      <option selected>Selecione...</option>
+                      <option value="{{consulta_one.other_payment_plans}}">{{consulta_one.other_payment_plans}}</option>
                       <option value="none">Nenhum</option>
                       <option value="bank">Bancos</option>
                       <option value="stores">Lojas</option>
@@ -197,7 +198,7 @@
                 <div class="col-auto my-1">
                     <label class="mr-sm-2" for="inlineFormCustomSelect">Habitação</label>
                     <select id ="selecao_15" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_15" onchange="" >
-                      <option selected>Selecione...</option>
+                      <option value="{{consulta_one.housing}}">{{consulta_one.housing}}</option>
                       <option value="own">Próprio</option>
                       <option value="'for free'">De graça</option>
                       <option value="rent">Alugada</option>
@@ -207,7 +208,7 @@
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Nº de créditos existentes nesse banco</label>
                   <select id ="selecao_16" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_16" onchange="" >
-                     <option selected>Selecione...</option>
+                     <option value="{{consulta_one.existing_credits}}">{{consulta_one.existing_credits}}</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -218,7 +219,7 @@
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Trabalho</label>
                   <select id ="selecao_17" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_17" onchange="" >
-                     <option selected>Selecione...</option>
+                     <option value="{{consulta_one.job}}">{{consulta_one.job}}</option>
                     <option value="skilled">Funcionário</option>
                     <option value="'unskilled resident'">Não qualificado</option>
                     <option value="'high qualif/self emp/mgmt'">Administrador/autônomo</option>
@@ -229,7 +230,7 @@
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Quantidade de dependentes</label>
                   <select id ="selecao_18" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_18" onchange="" >
-                     <option selected>Selecione...</option>
+                     <option value="{{consulta_one.num_dependents}}">{{consulta_one.num_dependents}}</option>
                     <option value="1">1</option>
                     <option value="2">2 ou mais</option>
                   </select>
@@ -238,7 +239,7 @@
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Telefone registrado em nome próprio</label>
                   <select id ="selecao_19" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_19" onchange="" >
-                     <option selected>Selecione...</option>
+                     <option value="{{consulta_one.own_telephone}}">{{consulta_one.own_telephone}}</option>
                     <option value="yes">Sim</option>
                     <option value="none">Nenhum</option>
                   </select>
@@ -247,13 +248,13 @@
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Trabalhador estrageiro</label>
                   <select id ="selecao_20" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_20" onchange="" >
-                     <option selected>Selecione...</option>
+                    <option value="{{consulta_one.foreign_worker}}">{{consulta_one.foreign_worker}}</option>
                     <option value="yes">Sim</option>
                     <option value="no">Não</option>
                   </select>
                 </div>
 
-                <input type="submit" class="btn btn-dark" value="Salvar">
+                <input type="submit" class="btn btn-dark" value="Salvar alterações">
               </form>
         </div>
 

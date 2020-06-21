@@ -11,6 +11,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login', views.login_page),
     path('submit', views.submit_login),
-    path('redirect', views.redirect_page)
+    path('redirect', views.redirect_page),
+    path('ConsultClient',views.ConsultClient),
+    path('edit_client',views.edit_page),
+    path('EditClient',views.EditClient),
+    path('DeleteMongo',views.DeleteMongo)
     # path('accounts/', include('django.contrib.auth.urls')),
 ]

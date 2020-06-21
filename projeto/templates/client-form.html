@@ -4,6 +4,14 @@
     <link   rel="stylesheet" TYPE="text/css" href="{% static 'css\bootstrap-4.5.0-dist\css\bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'css\bootstrap-4.5.0-dist\js\jquery-3.5.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'css\bootstrap-4.5.0-dist\js\bootstrap.min.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
+    <script type="text/javascript">
+         $("#selecao_cpf").mask("000.000.000-00");
+         $("#selecao_5").mask("#.##0,00", {reverse: true});
+    </script>
+
     <link   rel="stylesheet" TYPE="text/css" href= "{% static 'css\client-form.css' %}"/>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -12,55 +20,54 @@
     <title>Cadastro</title>
 </head>
 <body>
+
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
           <ul class="navbar-nav">
               <a class="nav-link" href="home">Home</a>
-              <a class="nav-link" href="list_clients">Listar Clientes</a>
+              <a class="nav-link" href="list_clients">Consultar Clientes</a>
               <a class="nav-link" href="login">Logout</a>
           </ul>
         </nav>
 
-
-
-        <div class="forms" id="forms">
+        <div class="forms" id="forms" >
               <form action="/insert_client" method="post" enctype="aplication/json" role="form" id="atb1">{% csrf_token %}
                 <div class=" align-items-center">
 
                 <div class="col-auto my-1">
                       <label class="mr-sm-2" for="inlineFormCustomSelect">Nome</label>
-                      <input type="text" class="form-control" id="selecao_nome" name="selecao_nome" placeholder="Nome completo">
+                      <input type="text" class="form-control" id="selecao_nome" name="selecao_nome" placeholder="Nome completo" required>
                 </div>
 
                 <div class="col-auto my-1">
                       <label class="mr-sm-2" for="inlineFormCustomSelect">CPF</label>
-                      <input type="cpf" class="form-control" id="selecao_cpf" name="selecao_cpf" placeholder="CPF">
+                      <input type="text" class="form-control" id="selecao_cpf" name="selecao_cpf"  placeholder="CPF" maxlength="11" required >
                 </div>
 
                 <div class="col-auto my-1">
                       <label class="mr-sm-2" for="inlineFormCustomSelect">E-mail</label>
-                      <input type="email" class="form-control" id="selecao_email" name="selecao_email" placeholder="E-mail">
+                      <input type="email" class="form-control" id="selecao_email" name="selecao_email" placeholder="E-mail" required>
                 </div>
 
                 <div class="col-auto my-1">
-                  <label class="mr-sm-2" for="inlineFormCustomSelect">Status da Conta Corrente $</label>
-                  <select id ="selecao_1" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_1" onchange="" >
-                    <option selected>Selecione...</option>
+                  <label class="mr-sm-2" for="inlineFormCustomSelect">Status da Conta Corrente</label>
+                  <select id ="selecao_1" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_1" onchange="" placeholder="Selecione..." required>
+                    <option value="">Selecione...</option>
                     <option value="<0">Menor que zero</option>
                     <option value="0<=X<200">Entre zero e duzentos</option>
-                    <option value="'no checking'">Maior ou igual a duzentos</option>
-                    <option value=">=200">Não possui conta</option>
+                    <option value="'no checking'">Não possui conta</option>
+                    <option value=">=200">Maior ou igual a duzentos</option>
                   </select>
                 </div>
 
                 <div class="col-auto my-1">
-                  <label class="mr-sm-2" for="inlineFormCustomSelect">Duração do Emprestimo $</label>
-                  <input type="text" class="form-control" id="selecao_2" name="selecao_2" placeholder="Duração do Emprestimo(em meses)">
+                  <label class="mr-sm-2" for="inlineFormCustomSelect">Duração do Emprestimo</label>
+                  <input type="number" class="form-control" id="selecao_2" name="selecao_2" placeholder="Duração do Emprestimo(em meses)" required>
                 </div>
 
                 <div class="col-auto my-1">
-                  <label class="mr-sm-2" for="inlineFormCustomSelect"> Histórico de crédito $</label>
-                  <select id ="selecao_3" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_3" onchange="" >
-                    <option selected>Selecione...</option>
+                  <label class="mr-sm-2" for="inlineFormCustomSelect"> Histórico de crédito</label>
+                  <select id ="selecao_3" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_3" onchange="" required>
+                    <option value="">Selecione...</option>
                     <option value="'critical/other existing credit'">Conta crítica em outros bancos</option>
                     <option value="'existing paid'">Créditos existentes, porém pagos</option>
                     <option value="'no credits/all paid'">Empréstimos nessa instuição pagos</option>
@@ -70,9 +77,9 @@
                 </div>
 
                 <div class="col-auto my-1">
-                  <label class="mr-sm-2" for="inlineFormCustomSelect">Objetivo $</label>
-                  <select id ="selecao_4" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_4" onchange="" >
-                    <option selected>Selecione...</option>
+                  <label class="mr-sm-2" for="inlineFormCustomSelect">Objetivo</label>
+                  <select id ="selecao_4" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_4" onchange="" required>
+                    <option value="">Selecione...</option>
                     <option value="radio/tv">Televisão</option>
                     <option value="education">Educação</option>
                     <option value="furniture/equipment">Móveis/Equipamentos</option>
@@ -86,19 +93,15 @@
                   </select>
                 </div>
 
-
-
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Valor do empréstimo</label>
-                  <input type="number"  class="form-control" id="selecao_5" name="selecao_5" placeholder="Valor do crédito (R$)" >
+                  <input type="text"  class="form-control" id="selecao_5" name="selecao_5" placeholder="Valor do crédito (R$)"  required>
                 </div>
-
-
 
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Valor em conta poupança</label>
-                  <select id ="selecao_6" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_6" onchange="" >
-                    <option selected>Selecione...</option>
+                  <select id ="selecao_6" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_6" onchange="" required>
+                    <option value="">Selecione...</option>
                     <option value="'no known savings'">Nenhuma conta poupança</option>
                     <option value="<100">Menos que R$100,00</option>
                     <option value="500<=X<1000">Entre R$500,00 e R$1.000,00</option>
@@ -111,8 +114,8 @@
 
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Tempo de trabalho no emprego atual</label>
-                  <select id ="selecao_7" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_7" onchange="" >
-                    <option selected>Selecione...</option>
+                  <select id ="selecao_7" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_7" onchange="" required>
+                    <option value="">Selecione...</option>
                     <option value=">=7">Mais que 7 anos</option>
                     <option value="1<=X<4">Entre 1 à 4 anos</option>
                     <option value="4<=X<7">Entre 4 à 7 anos</option>
@@ -125,8 +128,8 @@
 
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Taxa de parcelamento em porcentagem da renda disponível</label>
-                  <select id ="selecao_8" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_8" onchange="" >
-                    <option selected>Selecione...</option>
+                  <select id ="selecao_8" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_8" onchange="" required>
+                    <option value="">Selecione...</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -137,8 +140,8 @@
 
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Estado civil e gênero</label>
-                  <select id ="selecao_9" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_9" onchange="" >
-                    <option selected>Selecione...</option>
+                  <select id ="selecao_9" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_9" onchange="" required>
+                    <option value="">Selecione...</option>
                     <option value="'male single'">Masculino e solteiro</option>
                     <option value="'female div/dep/mar'">Feminino e Divorciado/Separado/Casado</option>
                     <option value="'male div/sep'">Masculino e Divorciado/Separado</option>
@@ -149,8 +152,8 @@
 
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Fiador/Outras partes envolvidas</label>
-                  <select id ="selecao_10" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_10" onchange="" >
-                    <option selected>Selecione...</option>
+                  <select id ="selecao_10" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_10" onchange="" required>
+                    <option value="">Selecione...</option>
                     <option value="none">Nenhum</option>
                     <option value="guarantor">Fiador</option>
                     <option value="'co applicant'">Cofiador</option>
@@ -159,8 +162,8 @@
 
                 <div class="col-auto my-1">
                     <label class="mr-sm-2" for="inlineFormCustomSelect">Reside no mesmo lugar desde</label>
-                    <select id ="selecao_11" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_11" onchange="" >
-                      <option selected>Selecione...</option>
+                    <select id ="selecao_11" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_11" onchange="" required>
+                      <option value="">Selecione...</option>
                       <option value="1">1 Ano</option>
                       <option value="2">2 Anos</option>
                       <option value="3">3 Anos </option>
@@ -170,8 +173,8 @@
 
                 <div class="col-auto my-1">
                     <label class="mr-sm-2" for="inlineFormCustomSelect">Propriedades</label> <!-- Verificar condições da documentação (atributo12) -->
-                    <select id ="selecao_12" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_12" onchange="" >
-                      <option selected>Selecione...</option>
+                    <select id ="selecao_12" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_12" onchange="" required>
+                      <option value="">Selecione...</option>
                       <option value="'real estate'">Imovéis</option>
                       <option value="'life insurance'">Seguro de vida</option>
                       <option value="'no known property'">Sem propriedades </option>
@@ -181,13 +184,13 @@
 
                 <div class="col-auto my-1">
                     <label class="mr-sm-2" for="inlineFormCustomSelect">Idade</label>
-                    <input type="number"  class="form-control" id="selecao_13" name="selecao_13" placeholder="Preencha a idade" >
+                    <input type="number"  class="form-control" id="selecao_13" name="selecao_13" placeholder="Preencha a idade" required >
                 </div>
 
                  <div class="col-auto my-1">
                     <label class="mr-sm-2" for="inlineFormCustomSelect">Outros parcelamentos </label>
-                    <select id ="selecao_14" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_14" onchange="" >
-                      <option selected>Selecione...</option>
+                    <select id ="selecao_14" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_14" onchange="" required>
+                      <option value="">Selecione...</option>
                       <option value="none">Nenhum</option>
                       <option value="bank">Bancos</option>
                       <option value="stores">Lojas</option>
@@ -196,8 +199,8 @@
 
                 <div class="col-auto my-1">
                     <label class="mr-sm-2" for="inlineFormCustomSelect">Habitação</label>
-                    <select id ="selecao_15" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_15" onchange="" >
-                      <option selected>Selecione...</option>
+                    <select id ="selecao_15" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_15" onchange="" required>
+                      <option value="">Selecione...</option>
                       <option value="own">Próprio</option>
                       <option value="'for free'">De graça</option>
                       <option value="rent">Alugada</option>
@@ -206,8 +209,8 @@
 
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Nº de créditos existentes nesse banco</label>
-                  <select id ="selecao_16" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_16" onchange="" >
-                     <option selected>Selecione...</option>
+                  <select id ="selecao_16" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_16" onchange="" required>
+                     <option value="">Selecione...</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -217,8 +220,8 @@
 
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Trabalho</label>
-                  <select id ="selecao_17" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_17" onchange="" >
-                     <option selected>Selecione...</option>
+                  <select id ="selecao_17" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_17" onchange="" required>
+                     <option value="">Selecione...</option>
                     <option value="skilled">Funcionário</option>
                     <option value="'unskilled resident'">Não qualificado</option>
                     <option value="'high qualif/self emp/mgmt'">Administrador/autônomo</option>
@@ -228,8 +231,8 @@
 
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Quantidade de dependentes</label>
-                  <select id ="selecao_18" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_18" onchange="" >
-                     <option selected>Selecione...</option>
+                  <select id ="selecao_18" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_18" onchange="" required>
+                     <option value="">Selecione...</option>
                     <option value="1">1</option>
                     <option value="2">2 ou mais</option>
                   </select>
@@ -237,8 +240,8 @@
 
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Telefone registrado em nome próprio</label>
-                  <select id ="selecao_19" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_19" onchange="" >
-                     <option selected>Selecione...</option>
+                  <select id ="selecao_19" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_19" onchange="" required
+                     <option value="">Selecione...</option>
                     <option value="yes">Sim</option>
                     <option value="none">Nenhum</option>
                   </select>
@@ -246,8 +249,8 @@
 
                 <div class="col-auto my-1">
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Trabalhador estrageiro</label>
-                  <select id ="selecao_20" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_20" onchange="" >
-                     <option selected>Selecione...</option>
+                  <select id ="selecao_20" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="selecao_20" onchange="" required>
+                     <option value="">Selecione...</option>
                     <option value="yes">Sim</option>
                     <option value="no">Não</option>
                   </select>
