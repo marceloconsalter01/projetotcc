@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from pymongo import MongoClient
-from projeto.models import db, InsertMongo, FindMongoAll, FindMongoOne, UpdateMongo
+from projeto.models import db, InsertMongo, FindMongoAll, FindMongoOne, UpdateMongo, DeleteClient_One
 
 
 def home_page(request):
@@ -81,7 +81,7 @@ def insert_client(request):
                 selecao_2, selecao_3, selecao_4, selecao_5, selecao_6, selecao_7, selecao_8, selecao_9, selecao_10,
                 selecao_11, selecao_12, selecao_13, selecao_14, selecao_15, selecao_16, selecao_17, selecao_18,
                 selecao_19, selecao_20)
-    return redirect(create_clients)
+    return redirect(list_page)
 
 
 @csrf_protect
@@ -129,9 +129,10 @@ def EditClient(request):
     return redirect(edit_page)
 
 
-def DeleteMongo(request):
+def Deletedb(request):
     cpf_exclude = str(request.POST.get('consulta_cpf'))
-    print(cpf_exclude)
-    teste = DeleteMongo(cpf_exclude)
-    print(teste)
+    valor = DeleteClient_One(cpf_exclude)
+    print(valor)
     return redirect(list_page)
+
+

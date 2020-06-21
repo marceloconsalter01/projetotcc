@@ -15,6 +15,6 @@ urlpatterns = [
     path('ConsultClient',views.ConsultClient),
     path('edit_client',views.edit_page),
     path('EditClient',views.EditClient),
-    path('DeleteMongo',views.DeleteMongo)
+    path('DeleteMongo',views.Deletedb)
     # path('accounts/', include('django.contrib.auth.urls')),
 ]

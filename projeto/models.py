@@ -85,13 +85,10 @@ def UpdateMongo(selecao_nome, selecao_cpf, selecao_email, selecao_1, selecao_2, 
     print(x.modified_count, "documents updated.")
 
 
-def DeleteMongo(argCPF):
-        query = {"cpf": {"$regex":argCPF}}
-        print(query)
-        db.cadastro.delete_many(query)
-        print('erro')
+def DeleteClient_One(cpf_value):
+    return db.cadastro.delete_one({"cpf": cpf_value})
 
-#DeleteMongo()
+#DeleteClient_One('00087887687')
 
 # teste = FindMongoAll()
 # print(teste)
