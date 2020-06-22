@@ -6,6 +6,8 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from pymongo import MongoClient
+
+from projeto.NaiveBayies import nbml
 from projeto.models import db, InsertMongo, FindMongoAll, FindMongoOne, UpdateMongo, DeleteClient_One
 
 
@@ -77,19 +79,29 @@ def insert_client(request):
     selecao_19 = request.POST.get('selecao_19')
     selecao_20 = request.POST.get('selecao_20')
 
-    InsertMongo(selecao_nome, selecao_cpf, selecao_email, selecao_1,
+    status = InsertMongo(selecao_nome, selecao_cpf, selecao_email, selecao_1,
                 selecao_2, selecao_3, selecao_4, selecao_5, selecao_6, selecao_7, selecao_8, selecao_9, selecao_10,
                 selecao_11, selecao_12, selecao_13, selecao_14, selecao_15, selecao_16, selecao_17, selecao_18,
                 selecao_19, selecao_20)
-    return redirect(list_page)
+
+    if status == True:
+        nbml(FindMongoOne(selecao_cpf))
+        const = 'Cadastrado com sucesso!'
+    elif status == False:
+        const = 'CPF já Cadastrado!'
+
+    return render(request, 'client-form.html', {"const": const})
 
 
 @csrf_protect
 def ConsultClient(request):
     cpf = request.POST.get('consulta_cpf')
-    print('ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ')
     consulta_one = FindMongoOne(cpf)
-    return render(request, "client-edit.html", {"consulta_one": consulta_one})
+    if consulta_one == None:
+        const1 = 'CPF não encontrado'
+        return render(request, "list-form.html", {"const": const1})
+    else:
+        return render(request, "client-edit.html", {"consulta_one": consulta_one})
 
 
 @csrf_protect

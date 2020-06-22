@@ -9,8 +9,18 @@
 
     <script type="text/javascript">
          $("#selecao_cpf").mask("000.000.000-00");
-         $("#selecao_5").mask("#.##0,00", {reverse: true});
+         <!-- $("#selecao_5").mask("#.##0,00", {reverse: true}); -->
+
+
     </script>
+    <style>
+        body{
+            background-color: #93b0b6;
+
+        }
+    </style>
+
+
 
     <link   rel="stylesheet" TYPE="text/css" href= "{% static 'css\client-form.css' %}"/>
     <meta charset="UTF-8">
@@ -20,10 +30,21 @@
     <title>Cadastro</title>
 </head>
 <body>
+          {% if const == "CPF já Cadastrado!"%}
+          <div class="alert alert-danger">
+              <strong>Cadastro não realizado!</strong> {{ const }}
+          </div>
+          {% endif %}
+
+          {% if const == "Cadastrado com sucesso!"%}
+          <div class="alert alert-sucess" >
+              <strong>Cadastro realizado!</strong> {{ const }}
+          </div>
+          {% endif %}
 
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
           <ul class="navbar-nav">
-              <a class="nav-link" href="home">Home</a>
+              <a class="nav-link" href="redirect">Inicio</a>
               <a class="nav-link" href="list_clients">Consultar Clientes</a>
               <a class="nav-link" href="login">Logout</a>
           </ul>
@@ -35,7 +56,7 @@
 
                 <div class="col-auto my-1">
                       <label class="mr-sm-2" for="inlineFormCustomSelect">Nome</label>
-                      <input type="text" class="form-control" id="selecao_nome" name="selecao_nome" placeholder="Nome completo" required>
+                      <input type="text" class="form-control"  id="selecao_nome" name="selecao_nome" placeholder="Nome completo" required>
                 </div>
 
                 <div class="col-auto my-1">
@@ -256,7 +277,7 @@
                   </select>
                 </div>
 
-                <input type="submit" class="btn btn-dark" value="Salvar">
+                <input type="submit" class="btn btn-dark" value="Salvar" >
               </form>
         </div>
 
