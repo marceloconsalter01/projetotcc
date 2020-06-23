@@ -9,7 +9,7 @@ from pymongo import MongoClient
 
 from projeto.DePara import translatedb
 from projeto.NaiveBayies import nbml
-from projeto.models import db, InsertMongo, FindMongoAll, FindMongoOne, UpdateMongo, DeleteClient_One
+from projeto.models import db, InsertMongo, FindMongoAll, FindMongoOne, UpdateMongo, DeleteClient_One, FindMongoStatus
 
 
 def home_page(request):
@@ -81,9 +81,10 @@ def insert_client(request):
     selecao_20 = request.POST.get('selecao_20')
 
     status = InsertMongo(selecao_nome, selecao_cpf, selecao_email, selecao_1,
-                selecao_2, selecao_3, selecao_4, selecao_5, selecao_6, selecao_7, selecao_8, selecao_9, selecao_10,
-                selecao_11, selecao_12, selecao_13, selecao_14, selecao_15, selecao_16, selecao_17, selecao_18,
-                selecao_19, selecao_20)
+                         selecao_2, selecao_3, selecao_4, selecao_5, selecao_6, selecao_7, selecao_8, selecao_9,
+                         selecao_10,
+                         selecao_11, selecao_12, selecao_13, selecao_14, selecao_15, selecao_16, selecao_17, selecao_18,
+                         selecao_19, selecao_20)
 
     if status == True:
         nbml(FindMongoOne(selecao_cpf))
@@ -98,10 +99,11 @@ def insert_client(request):
 def ConsultClient(request):
     cpf = request.POST.get('consulta_cpf')
     consulta_aux = FindMongoOne(cpf)
+    print(consulta_aux)
     consulta_one = translatedb(consulta_aux)
-    if consulta_one == None:
-        const1 = 'CPF não encontrado'
-        return render(request, "list-form.html", {"const": const1})
+    if consulta_aux == None:
+        const1 = 'CPF não encontrado!'
+        return render(request, "list-form.html", {"const1": const1})
     else:
         return render(request, "client-edit.html", {"consulta_one": consulta_one})
 
@@ -150,3 +152,7 @@ def Deletedb(request):
     return redirect(list_page)
 
 
+def ConsultClientbad(request):
+    consulta2 = FindMongoStatus('Mal Pagador')
+    print(consulta2)
+    return render(request, "list-form.html", {"consulta2": consulta2})

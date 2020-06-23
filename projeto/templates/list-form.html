@@ -8,9 +8,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 
+
     <script type="text/javascript">
          $("#consulta_cpf").mask("000.000.000-00");
     </script>
+
 
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -31,7 +33,7 @@
 
          {% if const1 == "CPF não encontrado!"%}
           <div class="alert alert-danger">
-              <strong>Erro!</strong> {{ const }}
+              <strong>Erro!</strong> {{ const1 }}
           </div>
           {% endif %}
 
@@ -43,9 +45,11 @@
                   <th scope="col">CPF</th>
                   <th scope="col">E-mail</th>
                   <th scope="col">Status</th>
+                  <th scope="col">Ação</th>
                 </tr>
               </thead>
               <tbody>
+
                 {% for lista in consulta %}
                     <tr>
                       <th scope="row">**</th>
@@ -53,19 +57,24 @@
                       <td>{{lista.cpf}}</td>
                       <td>{{lista.email}}</td>
                       <td>{{lista.previsao_pag}}</td>
+                      <td><a class="nav-link" href="/DeleteMongo">Excluir</a></td>
                     </tr>
                 {% endfor %}
+
+
 
               </tbody>
         </table>
 
         <div>
-            <form action="/ConsultClient" method="post" enctype="aplication/json" role="form" id="atb1">{% csrf_token %}
+            <form action="/ConsultClient" method="post" enctype="aplication/json" role="form" id="atb1" >{% csrf_token %}
                 <div class="col-auto my-1">
                     <label class="mr-sm-2" for="inlineFormCustomSelect">Consultar Cliente</label>
                     <input type="text" class="form-control" id="consulta_cpf" name="consulta_cpf" placeholder="CPF" required>
-                    <input type="submit" class="btn btn-dark" value="Buscar">
+                    <input type="submit" class="btn btn-dark" value="Editar">
                     <input type="submit"  class="btn btn-dark"  value="Excluir" formaction="/DeleteMongo">
+                    <!-- <input type="submit"  class="btn btn-dark"  value="Bons Pagadores" formaction="">-->
+                    <!--<input type="submit"  class="btn btn-dark"  value="Maus Pagadores" formaction="/FiltrarMal">-->
                 </div>
             </form>
         </div>

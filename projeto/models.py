@@ -11,8 +11,7 @@ def InsertMongo(selecao_nome, selecao_cpf, selecao_email, selecao_1, selecao_2, 
                 selecao_5, selecao_6, selecao_7, selecao_8, selecao_9, selecao_10,
                 selecao_11, selecao_12, selecao_13, selecao_14, selecao_15, selecao_16,
                 selecao_17, selecao_18, selecao_19, selecao_20):
-
-    existing_document = db.cadastro.find_one({"cpf":selecao_cpf})
+    existing_document = db.cadastro.find_one({"cpf": selecao_cpf})
 
     if not existing_document:
         status = True
@@ -97,12 +96,11 @@ def DeleteClient_One(cpf_value):
     return db.cadastro.delete_one({"cpf": cpf_value})
 
 
-def UpdateMongoPrevisao(selecao_cpf,previsao):
+def UpdateMongoPrevisao(selecao_cpf, previsao):
     if previsao == "['good']":
         previsao = 'Bom Pagador'
     elif previsao == "['bad']":
         previsao = 'Mal Pagador'
-
 
     query = {"cpf": selecao_cpf}
     newvalues = {"$set": {
@@ -111,3 +109,7 @@ def UpdateMongoPrevisao(selecao_cpf,previsao):
     x = db.cadastro.update_one(query, newvalues)
 
     print(x.modified_count, "documents updated.")
+
+
+def FindMongoStatus(value):
+    return db.cadastro.find_one({"previsao_pag": value})

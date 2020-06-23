@@ -1,2 +1,2 @@
 checking_status,duration,credit_history,purpose,credit_amount,savings_status,employment,installment_commitment,personal_status,other_parties,residence_since,property_magnitude,age,other_payment_plans,housing,existing_credits,job,num_dependents,own_telephone,foreign_worker
-<0,36,'critical/other existing credit',education,20000,'no known savings',>=7,2,'male div/sep',guarantor,3,'life insurance',34,bank,rent,2,'unskilled resident',1,yes,yes
+<0,12,'existing paid',education,20000,<100,1<=X<4,2,'female single',guarantor,2,'life insurance',17,none,'for free',2,'unskilled resident',2,none,no
