@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from pymongo import MongoClient
 
+from projeto.DePara import translatedb
 from projeto.NaiveBayies import nbml
 from projeto.models import db, InsertMongo, FindMongoAll, FindMongoOne, UpdateMongo, DeleteClient_One
 
@@ -96,7 +97,8 @@ def insert_client(request):
 @csrf_protect
 def ConsultClient(request):
     cpf = request.POST.get('consulta_cpf')
-    consulta_one = FindMongoOne(cpf)
+    consulta_aux = FindMongoOne(cpf)
+    consulta_one = translatedb(consulta_aux)
     if consulta_one == None:
         const1 = 'CPF não encontrado'
         return render(request, "list-form.html", {"const": const1})
