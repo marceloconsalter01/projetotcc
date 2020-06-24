@@ -45,6 +45,8 @@
                   <th scope="col">CPF</th>
                   <th scope="col">E-mail</th>
                   <th scope="col">Status</th>
+                  <th scope="col">Data de Cadastro</th>
+                  <th scope="col">Ultima Alteração</th>
                   <th scope="col">Excluir</th>
                   <th scope="col">Editar</th>
                 </tr>
@@ -53,6 +55,8 @@
                     <th><input type="text" id="txtColuna2" placeholder="Busca por CPF"/></th>
                     <th><input type="text" id="txtColuna3" placeholder="Busca por E-mail"/></th>
                     <th><input type="text" id="txtColuna4" placeholder="Busca por Status"/></th>
+                    <th><input type="text" id="txtColuna5" placeholder="Busca por Data"/></th>
+                    <th><input type="text" id="txtColuna6" placeholder="Busca por Data"/></th>
                 </tr>
               </thead>
               <tbody>
@@ -68,11 +72,11 @@
                      {% else %}
                       <td class="bg-danger">{{lista.previsao_pag}}</td>
                      {% endif %}
-
+                      <td>{{lista.data}}</td>
+                      <td>{{lista.data2}}</td>
                       <td><a class="nav-link" href="/DeleteMongo/{{lista.cpf}}">Excluir</a></td>
                       <td><a class="nav-link" href="/ConsultClient/{{lista.cpf}}">Editar</a></td>
                     </tr>
-
                 {% endfor %}
 
 

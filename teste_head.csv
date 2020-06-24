@@ -1,2 +1,2 @@
 checking_status,duration,credit_history,purpose,credit_amount,savings_status,employment,installment_commitment,personal_status,other_parties,residence_since,property_magnitude,age,other_payment_plans,housing,existing_credits,job,num_dependents,own_telephone,foreign_worker
-'no checking',100,Empréstimos nessa instuição pagos,Televisão,90000000,Nenhuma conta poupança,Mais que 7 anos,1,Feminino e Divorciado / Separado / Casado,Fiador,1 Ano,Imovéis,-1,Nenhum,Próprio,1,Funcionário,1,Nenhum,Sim
+>=200,100,'critical/other existing credit',radio/tv,1000000,Nenhuma conta corrente,unemployed,4,Masculino e solteiro,none,1,'no known property',49,stores,'for free',0,skilled,0,none,yes

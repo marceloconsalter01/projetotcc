@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+from datetime import date
 import pprint
 
 DEBUG = True
@@ -7,7 +8,7 @@ Mongodb = MongoClient('localhost', 27123)
 db = Mongodb.dbcredit
 
 
-def InsertMongo(selecao_nome, selecao_cpf, selecao_email, selecao_1, selecao_2, selecao_3, selecao_4,
+def InsertMongo(data,selecao_nome, selecao_cpf, selecao_email, selecao_1, selecao_2, selecao_3, selecao_4,
                 selecao_5, selecao_6, selecao_7, selecao_8, selecao_9, selecao_10,
                 selecao_11, selecao_12, selecao_13, selecao_14, selecao_15, selecao_16,
                 selecao_17, selecao_18, selecao_19, selecao_20):
@@ -17,7 +18,7 @@ def InsertMongo(selecao_nome, selecao_cpf, selecao_email, selecao_1, selecao_2, 
         status = True
         db.cadastro.insert_many(
             [
-                {
+                {   "data": data,
                     "nome": selecao_nome,
                     "cpf": selecao_cpf,
                     "email": selecao_email,
@@ -57,7 +58,7 @@ def FindMongoOne(value):
     return db.cadastro.find_one({"cpf": value})
 
 
-def UpdateMongo(selecao_nome, selecao_cpf, selecao_email, selecao_1, selecao_2, selecao_3, selecao_4,
+def UpdateMongo(selecao_nome, selecao_cpf,data, selecao_email, selecao_1, selecao_2, selecao_3, selecao_4,
                 selecao_5, selecao_6, selecao_7, selecao_8, selecao_9, selecao_10,
                 selecao_11, selecao_12, selecao_13, selecao_14, selecao_15, selecao_16,
                 selecao_17, selecao_18, selecao_19, selecao_20):
@@ -65,6 +66,7 @@ def UpdateMongo(selecao_nome, selecao_cpf, selecao_email, selecao_1, selecao_2, 
     newvalues = {"$set": {
         "nome": selecao_nome,
         "cpf": selecao_cpf,
+        "data2": data,
         "email": selecao_email,
         "checking_status": selecao_1,
         "duration": selecao_2,
@@ -114,3 +116,10 @@ def UpdateMongoPrevisao(selecao_cpf, previsao):
 
 def FindMongoStatus(value):
     return db.cadastro.find_one({"previsao_pag": value})
+
+def getdata():
+    data = date.today()
+    data_atual = data.strftime('%d/%m/%Y')
+    print(data_atual)
+    return data_atual
+
