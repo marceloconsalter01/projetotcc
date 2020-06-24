@@ -139,7 +139,9 @@ def translatedb(consulta):
         print(consulta["housing"])
 
     # -------------------- existing_credits
-        if   consulta["existing_credits"] == "1":
+        if consulta["existing_credits"] == "0":
+             consulta["existing_credits"] = 'Nenhum'
+        elif  consulta["existing_credits"] == "1":
              consulta["existing_credits"] = '1'
         elif consulta["existing_credits"] == "2":
              consulta["existing_credits"] = '2'
@@ -161,7 +163,9 @@ def translatedb(consulta):
         print(consulta["job"])
 
     # -------------------- num_dependents
-        if   consulta["num_dependents"] == "1":
+        if consulta["num_dependents"] == "0":
+            consulta["num_dependents"] = 'Nenhum'
+        elif consulta["num_dependents"] == "1":
              consulta["num_dependents"] = '1'
         elif consulta["num_dependents"] == "2":
              consulta["num_dependents"] = '2 ou mais'
