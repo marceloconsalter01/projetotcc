@@ -93,6 +93,7 @@ def UpdateMongo(selecao_nome, selecao_cpf, selecao_email, selecao_1, selecao_2, 
 
 
 def DeleteClient_One(cpf_value):
+    print(cpf_value)
     return db.cadastro.delete_one({"cpf": cpf_value})
 
 
@@ -100,7 +101,7 @@ def UpdateMongoPrevisao(selecao_cpf, previsao):
     if previsao == "['good']":
         previsao = 'Bom Pagador'
     elif previsao == "['bad']":
-        previsao = 'Mal Pagador'
+        previsao = 'Mau Pagador'
 
     query = {"cpf": selecao_cpf}
     newvalues = {"$set": {

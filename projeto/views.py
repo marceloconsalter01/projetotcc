@@ -1,5 +1,7 @@
 import json
 from contextvars import Context
+
+import objects as objects
 from django.shortcuts import render, HttpResponse, redirect
 from django.template.loader import get_template
 from django.views.decorators.csrf import csrf_protect
@@ -7,7 +9,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from pymongo import MongoClient
 
-from projeto.DePara import translatedb
+from projeto.DePara import translatedb, translateupdate
 from projeto.NaiveBayies import nbml
 from projeto.models import db, InsertMongo, FindMongoAll, FindMongoOne, UpdateMongo, DeleteClient_One, FindMongoStatus
 
@@ -22,6 +24,7 @@ def list_page(request):
 
 
 def login_page(request):
+    user = None
     return render(request, "login.html")
 
 
@@ -46,6 +49,7 @@ def submit_login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
+        print(user)
         if user is not None:
             login(request, user)
             return redirect(redirect_page)
@@ -96,8 +100,7 @@ def insert_client(request):
 
 
 @csrf_protect
-def ConsultClient(request):
-    cpf = request.POST.get('consulta_cpf')
+def ConsultClient(request,cpf):
     consulta_aux = FindMongoOne(cpf)
     print(consulta_aux)
     consulta_one = translatedb(consulta_aux)
@@ -134,25 +137,26 @@ def EditClient(request):
     selecao_19 = request.POST.get('selecao_19')
     selecao_20 = request.POST.get('selecao_20')
 
+    translateupdate(selecao_1)
+
     UpdateMongo(selecao_nome, selecao_cpf, selecao_email, selecao_1,
                 selecao_2, selecao_3, selecao_4, selecao_5, selecao_6, selecao_7, selecao_8, selecao_9, selecao_10,
                 selecao_11, selecao_12, selecao_13, selecao_14, selecao_15, selecao_16, selecao_17, selecao_18,
                 selecao_19, selecao_20)
 
+
+
+    nbml(FindMongoOne(selecao_cpf))
+    print(selecao_cpf)
     print(selecao_email)
     print(selecao_1)
 
-    return redirect(edit_page)
-
-
-def Deletedb(request):
-    cpf_exclude = str(request.POST.get('consulta_cpf'))
-    valor = DeleteClient_One(cpf_exclude)
-    print(valor)
     return redirect(list_page)
 
 
-def ConsultClientbad(request):
-    consulta2 = FindMongoStatus('Mal Pagador')
-    print(consulta2)
-    return render(request, "list-form.html", {"consulta2": consulta2})
+def Deletedb(request,cpf):
+    valor = DeleteClient_One(str(cpf))
+    return redirect(list_page)
+
+
+

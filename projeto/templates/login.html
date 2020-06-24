@@ -16,7 +16,7 @@
 
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
           <ul class="navbar-nav">
-              <a class="nav-link" href="home">Home</a>
+              <a class="nav-link" href="home">Fale Conosco</a>
           </ul>
         </nav>
 
@@ -26,13 +26,13 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-      <img src="{% static 'img\cifrao.png' %}" id="icon" alt="User Icon" />
+      <img src="{% static 'img\Logo.png' %}" id="icon" alt="User Icon" />
     </div>
 
     <!-- Login Form -->
-    <form method="post" action="submit" class="form-group">{% csrf_token %}
+    <form method="post" action="submit" class="form-group box-login">{% csrf_token %}
         <input type="text" class="form-control" id="login" name="username" placeholder="login"><br>
-        <input type="text" class="form-control" id="login" name="password" placeholder="password"><br>
+        <input type="password" class="form-control" id="login" name="password" placeholder="password"><br>
 
           {% for message in messages %}
           <div class="alert alert-danger">

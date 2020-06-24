@@ -186,3 +186,18 @@ def translatedb(consulta):
         erro = "CPF não cadastrado"
 
         return erro
+
+def translateupdate(consulta1):
+    if consulta1 == 'Menor que zero':
+        consulta1 = "<0"
+
+    elif consulta1 == 'Entre zero e duzentos':
+         consulta1 = "0<=X<200"
+
+    elif consulta1 == 'Não possui conta':
+        consulta1 = "'no checking'"
+
+    elif consulta1 == ">=200":
+        consulta1 = 'Maior ou igual a duzentos'
+
+    print(consulta1)

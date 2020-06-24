@@ -2,14 +2,33 @@
 
 html {
   background-color: #56baed;
+
 }
 
+
+
 body {
+  background-image: url("/static/img/login.png");
+  background-size: cover;
   font-family: "Poppins", sans-serif;
   height: 100vh;
 
+
 }
 
+.box-login .form-control{
+    width: 85%;
+    margin: 0 auto;
+    padding-left: 20px;
+    background-color: #fff;
+    text-align: left;
+    border: 1px solid #ced4da;
+    display: block;
+}
+
+.box-login .form-control input[type=text]{
+    padding: 0;
+}
 nav {
     color: #A52A2A;
 }
@@ -36,7 +55,7 @@ h2 {
 
 .wrapper {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   flex-direction: column;
   justify-content: center;
   width: 100%;
