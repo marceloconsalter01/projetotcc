@@ -324,9 +324,9 @@ def translateupdate(selecao_nome, selecao_cpf, selecao_email, selecao_1,
     if selecao_16 == '1':
         selecao_16 = "1"
     elif selecao_16 == '2':
-        selecao_16 = "3"
+        selecao_16 = "2"
     elif selecao_16 == '3':
-        selecao_16 = "rent"
+        selecao_16 = "3"
     elif selecao_16 == '4 ou mais':
         selecao_16 = "4"
     elif selecao_16 == 'Nenhum':

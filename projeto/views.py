@@ -103,11 +103,11 @@ def insert_client(request):
 def ConsultClient(request,cpf):
     consulta_aux = FindMongoOne(cpf)
     consulta_one = translatedb(consulta_aux)
-    if consulta_aux == None:
-        const1 = 'CPF não encontrado!'
-        return render(request, "list-form.html", {"const1": const1})
-    else:
-        return render(request, "client-edit.html", {"consulta_one": consulta_one})
+#    if consulta_aux == None:
+#        const1 = 'CPF não encontrado!'
+#        return render(request, "list-form.html", {"const1": const1})
+#    else:
+    return render(request, "client-edit.html", {"consulta_one": consulta_one})
 
 
 @csrf_protect
